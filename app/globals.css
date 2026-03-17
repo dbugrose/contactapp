@@ -10,6 +10,7 @@
 
 input{
   background-color: white !important;
+  color: black !important;
 }
 @theme inline {
   --color-background: var(--background);
