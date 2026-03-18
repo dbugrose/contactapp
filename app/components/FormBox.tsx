@@ -11,6 +11,8 @@ export default function FormBox() {
   const [email, setEmail] = useState("")
   const [phone, setPhone] = useState("")
   const [contacts, setContacts] = useState<Contacts[]>([])
+  const [openModal, setOpenModal] = useState(false);
+
 
 
   function handleNameChange(e: React.ChangeEvent<HTMLInputElement>) {

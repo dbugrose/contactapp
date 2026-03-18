@@ -7,10 +7,15 @@
   --foreground: #171717;
 }
 
+.searchbar {
+  padding-left: 20px !important;
+}
+
 
 input{
   background-color: white !important;
   color: black !important;
+  padding-left: 15px !important;
 }
 @theme inline {
   --color-background: var(--background);
