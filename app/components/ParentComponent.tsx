@@ -7,11 +7,14 @@ import { Contacts } from "@/interfaces/interface";
 import { GetContactsByUserId } from "@/lib/services";
 import { getToken } from "@/lib/user-services";
 import Navlinks from "./Navlinks";
+import { redirect } from "next/dist/server/api-utils";
+import router, { useRouter } from "next/navigation";
 
 export default function ContactsPage() {
   const [contacts, setContacts] = useState<Contacts[]>([]);
   const [userId, setUserId] = useState<number>(0);
   const [token, setToken] = useState<string>("");
+  const router = useRouter();
 
   useEffect(() => {
     const storedUser = localStorage.getItem("user");
@@ -21,7 +24,10 @@ export default function ContactsPage() {
     }
     const storedToken = getToken();
     if (storedToken) setToken(storedToken);
-  }, []);
+    if(!storedToken)
+    { router.push("/login")}
+  }
+  , []);
 
   useEffect(() => {
     if (userId && token) {

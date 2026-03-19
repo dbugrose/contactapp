@@ -10,10 +10,11 @@ import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import ParentComponent from "./components/ParentComponent";
 
+
 export default function Home() {
     const [contacts, setContacts] = useState<Contacts[]>([])
     const router = useRouter();
-    
+
   
   return (
     <>
