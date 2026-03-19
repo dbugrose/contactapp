@@ -1,23 +1,55 @@
-"use server"
-import { Button, Label, TextInput } from 'flowbite-react'
-import { HiOutlineSearch } from "react-icons/hi"
-import { Navbar, NavbarBrand, NavbarCollapse, NavbarLink, NavbarToggle } from 'flowbite-react/components/Navbar'
-import React from 'react'
+"use client"
 
-const Navlinks = async () => {
-    return (
-        <Navbar fluid rounded className="light:bg-white! dark:bg-white!">
-            <NavbarBrand>
-                <img src="/assets/ContactFlow.png" className="mr-3 h-6 sm:h-9" alt="Flowbite React Logo" />
-                <span className="self-center whitespace-nowrap text-xl font-semibold text-black!">Contact Manager</span>
-            </NavbarBrand>
-            <div className="max-w-md light:bg-white! dark:bg-white!"><img src="/assets/searchIcon.png" alt="search icon" className="absolute right-45 top-4 max-w-18 max-h-8 z-2" />
-                <TextInput id="email4" type="email" placeholder="    Search contacts..." required className="light:bg-white! dark:bg-white! searchbar" />
-                </div>
+import React, { useState } from "react"
+import { Contacts } from "@/interfaces/interface"
+import { GetContactsByUserId, GetContactsBySearch } from "@/lib/services"
+import { Navbar, NavbarBrand, TextInput } from "flowbite-react"
 
-        </Navbar>
-    )
+type NavlinksProps = {
+  userId: number
+  token: string
+  setContacts: (c: Contacts[]) => void
 }
 
+const Navlinks = ({ userId, token, setContacts }: NavlinksProps) => {
+  const [search, setSearch] = useState("")
+
+  async function handleSearch(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "Enter") {
+      if (!userId || !token) return
+
+      if (search.trim() === "") {
+        const all = await GetContactsByUserId(userId, token)
+        setContacts(all)
+      } else {
+        const results = await GetContactsBySearch(search, token)
+        setContacts(results)
+      }
+    }
+  }
+
+  return (
+    <Navbar fluid rounded className="light:bg-white! dark:bg-white! border-b border-b-[#b0b0b0]!">
+      <NavbarBrand>
+        <img
+          src={token ? "/assets/contactmanager.png" : "/assets/ContactFlow.png"}
+          className="h-6 sm:h-9"
+          alt="Logo"
+        />
+      </NavbarBrand>
+
+      <div className="max-w-md relative">
+        <TextInput
+          id="searchContacts"
+          placeholder="Search contacts..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          onKeyDown={handleSearch}
+          className="light:bg-white! dark:bg-white! searchbar"
+        />
+      </div>
+    </Navbar>
+  )
+}
 
 export default Navlinks

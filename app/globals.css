@@ -8,14 +8,22 @@
 }
 
 .searchbar {
-  padding-left: 20px !important;
+  padding: 0px !important;
 }
 
 
-input{
-  background-color: white !important;
+input, label{
+  background-color: transparent;
   color: black !important;
-  padding-left: 15px !important;
+}
+
+.subtext {
+  font-size: 12px !important;
+}
+
+.eye {
+  position: absolute;
+  transform: translate(230px, -32px);
 }
 @theme inline {
   --color-background: var(--background);
