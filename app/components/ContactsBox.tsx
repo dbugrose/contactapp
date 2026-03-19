@@ -59,7 +59,7 @@ export default function ContactsBox({
 
 async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
   e.preventDefault();
-  if (!userId || !token) return; // Wait for both to be set
+  if (!userId || !token) return;
 
   const update: Contacts = {
     id: editId,

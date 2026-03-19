@@ -40,7 +40,7 @@ export default function ContactsPage() {
   }, [userId, token]);
 
   return (
-    <>    <Navlinks userId={userId} token={token} setContacts={setContacts} />
+    <><Navlinks userId={userId} token={token} setContacts={setContacts} />
 
     <div className="gap-5 grid grid-cols-[400px_1fr]">
       <FormBox userId={userId} token={token} contacts={contacts} setContacts={setContacts} />

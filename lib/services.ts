@@ -1,8 +1,8 @@
 import { Contact, Contacts } from "@/interfaces/interface";
 
-// let url = "https://contactmanagerdor-a2bfb6cehkdxg2bp.westus3-01.azurewebsites.net/"
+let url = "https://contactmanagerdor-a2bfb6cehkdxg2bp.westus3-01.azurewebsites.net/"
 
-const url = "http://localhost:5218/"
+// const url = "http://localhost:5218/"
 
 export async function AddContact(contact:Contact, token: string) : Promise<Contact> {
 
